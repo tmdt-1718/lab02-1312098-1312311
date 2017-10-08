@@ -1,0 +1,49 @@
+$navbar-default-bg: #2c3e50;
+$grid-float-breakpoint: 992px;
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#logo {
+    float: left;
+    font-size: 1.7em;
+    color: #e3e6e7;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    font-weight: bold;
+}
+
+#logo:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.navbar .brand, .navbar .nav > li > a {
+    color: #e3e6e7;
+}
+.navbar .brand, .navbar .nav > li > a:hover {
+    color: #ffffff;
+}
+
+
+.center {
+    text-align: center;
+}
+
+.jumbotron {
+    background-image: asset-url("emails.jpg");
+    background-size: cover;
+    height: 550px; 
+}
+
+.jumbotron h1 {
+    color: #2980b9;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: -1px;
+    font-weight: bold;
+}
+
+.btn-xlarge {
+    font-size: 1.7em;
+    background-color: #3498db;
+}
