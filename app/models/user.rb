@@ -12,4 +12,21 @@ class User < ApplicationRecord
     has_secure_password
 
     mount_uploader :avatar, ImageUploader
+
+    def self.sign_in_from_omniauth(auth)
+        find_by(provider: auth['provider'], uid: auth['uid']) || create_user_from_omniauth(auth)
+    end
+
+    def self.create_user_from_omniauth(auth)
+        create! do |user|
+            user.provider = auth['provider']
+            user.uid = auth['uid']
+            user.password = "123456"
+            if auth['info']
+              user.username = auth['info']['name'] || ""
+              user.email = auth['info']['email'] || ""
+              user.remote_avatar_url = auth['info']['image'] || ""
+            end
+        end
+    end
 end

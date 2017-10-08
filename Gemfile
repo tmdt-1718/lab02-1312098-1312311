@@ -35,8 +35,10 @@ gem 'bcrypt', '~> 3.1.7' # ma hoa mat khau
 gem 'carrierwave', '~> 1.0' # ho tro up hinh
 gem 'cloudinary' # ho tro upload len host
 
+gem "figaro" # quan ly bien moi truong
 
-
+gem 'omniauth-facebook' # login with facebook
+gem 'certified'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
