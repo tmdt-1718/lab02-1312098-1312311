@@ -5,18 +5,19 @@
         <tbody>
             <% if @emails_inbox %>
                 <% @emails_inbox.each do |email| %>
-                    <% if !@email_inbox.read %>
-                        <tr>
+                    <% if !email.read %>
+                        <tr class="UnRead">
                             <td><strong><%= email.user.username %></strong></td>
-                            <td><span class="label pull-right">Notifications</span></td>
+                            <td><span class="label pull-right"></span></td>
                             <td><strong><%= truncate(email.body, length: 15) %></strong></td>                            <td><strong><%= time_ago_in_words(email.created_at) %> ago</strong></td>
-                            <td><%= link_to  "Read", class: "btn btn-private" email_inbox_show_path(email) %></td> 
+                            <td><%= link_to  "Read" , email_inbox_show_path(email),  class: "btn btn-danger" %></td> 
                         </tr>
                     <% else %>
                         <td><%= email.user.username %></td>
-                        <td><span class="label pull-right">Notifications</span></td>
-                        <td><%= truncate(email.body, length: 15) %></td>                            <td><strong><%= time_ago_in_words(email.created_at) %> ago</strong></td>
-                        <td><%= link_to  "Read", class: "btn btn-private", email_inbox_show_path(email) %></td>
+                        <td><span class="label pull-right"></span></td>
+                        <td><%= truncate(email.body, length: 15) %></td>                            
+                        <td><%= time_ago_in_words(email.created_at) %> ago</td>
+                        <td><%= link_to  "Read", email_inbox_show_path(email),  class: "btn btn-primary" %></td>
                     <% end %>
                 <% end %>
             <% end %>

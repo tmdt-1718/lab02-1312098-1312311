@@ -1,0 +1,27 @@
+<h1>Listing all emails sent</h1>
+
+<div>
+    <table class="table table-condensed table-hover">
+        <tbody>
+            <% if @emails_sent %>
+                <% @emails_sent.each do |email| %>
+                    <% if !email.read %>
+                        <tr class="UnRead">
+                            <td><strong><%= email.user.username %></strong></td>
+                            <td><span class="label pull-right"></span></td>
+                            <td><strong><%= truncate(email.body, length: 15) %></strong></td>                            
+                            <td><strong> Not Read</strong></td>
+                            <td><%= link_to  "Read" , email_sent_show_path(email),  class: "btn btn-danger" %></td> 
+                        </tr>
+                    <% else %>
+                        <td><%= email.user.username %></td>
+                        <td><span class="label pull-right"></span></td>
+                        <td><%= truncate(email.body, length: 15) %></td>                            
+                        <td><%= time_ago_in_words(email.updated_at) %> ago</td>
+                        <td><%= link_to  "Read", email_sent_show_path(email),  class: "btn btn-primary" %></td>
+                    <% end %>
+                <% end %>
+            <% end %>
+        </tbody>      
+    </table>
+</div>

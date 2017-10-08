@@ -27,11 +27,12 @@ class EmailsController < ApplicationController
     end
 
     def Email_sent
-        @emails_sent= Email.find_by(user_id: current_user.id)
+        @emails_sent= Email.where(user_id: current_user.id).all
     end
 
     def Email_sent_show
         @email = Email.find(params[:id])
+        
     end
 
     def Email_inbox
@@ -40,6 +41,11 @@ class EmailsController < ApplicationController
 
     def Email_inbox_show
         @email = Email.find(params[:id])
+        if !@email.read
+            @email.update(read: true)
+        end
+
+
     end
 
 
