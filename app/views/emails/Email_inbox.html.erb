@@ -1,0 +1,25 @@
+<h1>Listing all emails received</h1>
+
+<div>
+    <table class="table table-condensed table-hover">
+        <tbody>
+            <% if @emails_inbox %>
+                <% @emails_inbox.each do |email| %>
+                    <% if !@email_inbox.read %>
+                        <tr>
+                            <td><strong><%= email.user.username %></strong></td>
+                            <td><span class="label pull-right">Notifications</span></td>
+                            <td><strong><%= truncate(email.body, length: 15) %></strong></td>                            <td><strong><%= time_ago_in_words(email.created_at) %> ago</strong></td>
+                            <td><%= link_to  "Read", class: "btn btn-private" email_inbox_show_path(email) %></td> 
+                        </tr>
+                    <% else %>
+                        <td><%= email.user.username %></td>
+                        <td><span class="label pull-right">Notifications</span></td>
+                        <td><%= truncate(email.body, length: 15) %></td>                            <td><strong><%= time_ago_in_words(email.created_at) %> ago</strong></td>
+                        <td><%= link_to  "Read", class: "btn btn-private", email_inbox_show_path(email) %></td>
+                    <% end %>
+                <% end %>
+            <% end %>
+        </tbody>      
+    </table>
+</div>

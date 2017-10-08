@@ -1,5 +1,7 @@
 class User < ApplicationRecord
 
+    has_many :emails
+
     before_save {self.email = email.downcase}
 
     validates :username, presence: true, 

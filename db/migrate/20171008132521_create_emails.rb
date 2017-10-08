@@ -1,7 +1,7 @@
 class CreateEmails < ActiveRecord::Migration[5.1]
   def change
     create_table :emails do |t|
-      t.integer :from
+      t.integer :user_id
       t.integer :to
       t.string :subject
       t.string :body
