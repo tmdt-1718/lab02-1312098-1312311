@@ -1,0 +1,42 @@
+<%= render  "shared/errors", obj: @email %>
+<h1 align="center">New Email</h1>
+<div class="row" id="new_email">
+    <div class="col-xs-8 col-xs-offset-2">
+        <%= form_for(@email, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+        <div class="form-group">
+            <div class="control-label col-sm-2">
+                <%= f.label :to %> <br/>
+            </div>
+            <div class="col-sm-8">
+                <%= f.text_field :to, class: "form-control", placeholder: "Someone", autofocus: true %>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-sm-2">
+                <%= f.label :subject %> <br/>
+            </div>
+            <div class="col-sm-8">
+                <%= f.text_field :subject, class: "form-control", placeholder: "Subject of email", autofocus: true %>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-sm-2">
+                <%= f.label :body %> <br/>
+            </div>
+            <div class="col-sm-8">
+                <%= f.text_area :body, rows: 10, class: "form-control", placeholder: "Body of email" %>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+                <%= f.submit "Send", class: 'btn btn-primary' %>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>
