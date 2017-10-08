@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: doancuoiki
+  api_key: '894259973189773'
+  api_secret: e68qaWrrPTkhExBJsAW4ngQrQvw
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: doancuoiki
+  api_key: '894259973189773'
+  api_secret: e68qaWrrPTkhExBJsAW4ngQrQvw
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: doancuoiki
+  api_key: '894259973189773'
+  api_secret: e68qaWrrPTkhExBJsAW4ngQrQvw
+  enhance_image_tag: true
+  static_image_support: false
