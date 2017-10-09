@@ -16,8 +16,12 @@
                 <li>
                     <small> <%= friend.email %></small>
                 </li>
-                <li><%= link_to "Unfriend" %></li>
-                <li><%= link_to "Block" %></li>
+                <li><%= link_to "Unfriend", "#", class: "btn btn-danger btn-small" %></li>
+                <% if !friend %>
+                    <li><%= link_to "Block", "#", class: "btn btn-danger btn-small"  %></li>
+                <% else %>
+                    <li><%= link_to "UnBlock", "#", class: "btn btn-danger btn-small"  %></li>
+                <% end %>
             </div>
         </div>
     </ul>

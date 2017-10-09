@@ -1,7 +1,7 @@
 class FriendsController < ApplicationController
 
     def index
-        @user = User.all
+        @friends = current_user.friends_with
     end
 
     def show
