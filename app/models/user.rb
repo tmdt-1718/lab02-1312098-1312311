@@ -1,5 +1,28 @@
 class User < ApplicationRecord
 
+    has_many :active_friends, class_name:  "Friend",
+                            foreign_key: "user_id",
+                           dependent:  :destroy 
+    
+    has_many :friends_with, through: :active_friends, source: :friend                      
+    
+    def make_friend(other_user)
+        friends_with << other_user
+    end
+    
+    # Unfriend a user.
+    def unfriend(other_user)
+        friends_with.delete(other_user)
+    end
+    
+    # Returns true if the current user is friend the other user.
+    def friend?(other_user)
+        friends_with.include?(other_user)
+    end 
+
+                            
+    
+                            
     before_save {self.email = email.downcase}
 
     validates :username, presence: true, 
