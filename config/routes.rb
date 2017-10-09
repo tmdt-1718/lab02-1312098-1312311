@@ -14,5 +14,7 @@ Rails.application.routes.draw do
   resources :emails
 
   get 'auth/:provider/callback', to: "sessions#create"
+
+  resources :friends
   
 end
