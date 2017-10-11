@@ -6,12 +6,14 @@ class User < ApplicationRecord
     
     has_many :friends_with, through: :active_friends, source: :friend                      
     
-    def make_friend(other_user)
+    def make_friend(id_user)
+        other_user = User.find(id_user)
         friends_with << other_user
     end
     
     # Unfriend a user.
-    def unfriend(other_user)
+    def unfriend(id_user)
+        other_user = User.find(id_user)
         friends_with.delete(other_user)
     end
     
@@ -19,6 +21,11 @@ class User < ApplicationRecord
     def friend?(other_user)
         friends_with.include?(other_user)
     end 
+
+    def block?(id_user)
+        friend = Friend.find_by(user_id: self.id, friend_id: id_user)
+        friend.block
+    end
 
                             
     

@@ -22,11 +22,14 @@
                 <div class="user-action">
                     <% if logged_in?  %>
                         <% if current_user.friend?(user) %>
-                            <%= link_to "Unfriend", "#", class: "btn btn-danger" %>
+                            <%= link_to "Unfriend", friend_path(user), method: :delete,
+                                    data: {confirm: "Are you sure you want to delete the album"}, 
+                                    class: "btn btn-danger" %>
                         <% else %>
-                            <%= link_to  "Add friend", friend_path(user),method: :delete,
-                                                    data: {confirm: "Are you sure you want to delete the album"}, 
-                                                    class: "btn btn-primary" %>
+                            <%= form_for(:friend, :html => {class: "omb_loginForm", role: "form"}, url: friends_path) do |f| %>
+                                <%= f.hidden_field :id, :value => user.id %>
+                                <%= f.submit  "Add friend" ,class: "btn btn-primary" %>
+                            <% end %>
                         <% end %>   
                     <% end %>
                 </div>

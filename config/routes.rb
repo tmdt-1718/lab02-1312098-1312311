@@ -13,6 +13,9 @@ Rails.application.routes.draw do
 
   resources :emails
 
+  put 'block', to: "friends#block"
+  put 'unblock', to: "friends#unblock"
+
   get 'auth/:provider/callback', to: "sessions#create"
 
   resources :friends

@@ -20,12 +20,24 @@
                 </div>
         
                 <div class="user-action">
-                    <%= link_to "Unfriend", "#", class: "btn btn-danger btn-xs" %>
-                    <% if !friend %>
-                        <%= link_to "Block", "#", class: "btn btn-danger btn-xs"  %>
-                    <% else %>
-                        <%= link_to "UnBlock", "#", class: "btn btn-danger btn-xs"  %>
-                    <% end %>
+                    <div class="col-xs-8 col-xs-offset-2">
+                        <%= link_to "Unfriend", friend_path(friend), method: :delete,
+                                data: {confirm: "Are you sure you want to delete the album"}, 
+                                class: "btn btn-danger pull-left" %>
+                        <% if current_user.block?(friend.id) %>
+                            <%= form_for(:friend, role: "form", url: unblock_path, :method => 'put') do |f| %>
+                                <%= f.hidden_field :id, :value => friend.id %>
+                                <%= f.submit  "UnBlock" ,class: "btn btn-primary pull-right" %>
+                            <% end %>
+                            
+                        <% else %>
+                            <%= form_for(:friend, role: "form", url: block_path, :method => 'put') do |f| %>
+                                <%= f.hidden_field :id, :value => friend.id %>
+                                <%= f.submit  "Block" ,class: "btn btn-primary pull-right" %>
+                            <% end %>
+                        <% end %>
+                    </div>
+                    
                 </div>
             </div>
         </div>
