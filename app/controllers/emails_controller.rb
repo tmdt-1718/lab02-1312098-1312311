@@ -1,5 +1,7 @@
 class EmailsController < ApplicationController
-    before_action :set_email, only: [:show, :destroy]
+    before_action :set_email, only: [:show, :destroy, :Email_inbox_show, :Email_sent_show]
+    before_action :require_user
+    before_action :require_same_user, only: [ :Email_sent_show]
 
 
     def new
@@ -31,9 +33,7 @@ class EmailsController < ApplicationController
         @emails_sent= Email.where(user_id: current_user.id).all
     end
 
-    def Email_sent_show
-        @email = Email.find(params[:id])
-        
+    def Email_sent_show  
     end
 
     def Email_inbox
@@ -41,9 +41,11 @@ class EmailsController < ApplicationController
     end
 
     def Email_inbox_show
-        @email = Email.find(params[:id])
         if !@email.read
             @email.update(read: true)
+        else 
+            flash[:danger] = "You have been read this email"
+            redirect_to emails_inbox_path
         end
     end
 
@@ -55,5 +57,14 @@ class EmailsController < ApplicationController
 
         def set_email
             @email = Email.find(params[:id])
+        end
+
+        
+
+        def require_same_user
+            if  current_user.id != @email.user_id
+                flash[:danger] = "You can only see your email"
+                redirect_to emails_inbox_path
+            end
         end
 end

@@ -2,6 +2,15 @@
 
 <div>
     <table class="table table-condensed table-hover">
+        <thead>
+            <tr>
+                <th>To</th>
+                <td><span class="label pull-right"></span></td>
+                <th>Content</th>
+                <td><span class="label pull-right"></span></td>
+                <th>Status</th>
+            </tr>
+        </thead>
         <tbody>
             <% if @emails_inbox %>
                 <% @emails_inbox.each do |email| %>
@@ -10,14 +19,15 @@
                             <td><strong><%= email.user.username %></strong></td>
                             <td><span class="label pull-right"></span></td>
                             <td><strong><%= truncate(email.body, length: 15) %></strong></td>                            <td><strong><%= time_ago_in_words(email.created_at) %> ago</strong></td>
-                            <td><%= link_to  "Read" , email_inbox_show_path(email),  class: "btn btn-danger" %></td> 
+                            <td><%= link_to  "Read" , email_inbox_show_path(email),  class: "btn btn-primary btn-xs" %></td> 
                         </tr>
                     <% else %>
-                        <td><%= email.user.username %></td>
-                        <td><span class="label pull-right"></span></td>
-                        <td><%= truncate(email.body, length: 15) %></td>                            
-                        <td><%= time_ago_in_words(email.created_at) %> ago</td>
-                        <td><%= link_to  "Read", email_inbox_show_path(email),  class: "btn btn-primary" %></td>
+                        <tr>
+                            <td><%= email.user.username %></td>
+                            <td><span class="label pull-right"></span></td>
+                            <td><%= truncate(email.body, length: 15) %></td>                            
+                            <td><%= time_ago_in_words(email.created_at) %> ago</td>
+                        </tr>
                     <% end %>
                 <% end %>
             <% end %>

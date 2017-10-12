@@ -1,5 +1,5 @@
 class FriendsController < ApplicationController
-
+    before_action :require_user
     def index
         @friends = current_user.friends_with
     end

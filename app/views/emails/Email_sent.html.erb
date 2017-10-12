@@ -1,7 +1,16 @@
-<h1>Listing all emails sent</h1>
+<h1 align="center">Listing all emails sent</h1>
 
-<div>
+<div class="col-xs-10 col-xs-offset-1 inbox">
     <table class="table table-condensed table-hover">
+        <thead>
+            <tr>
+                <th>To</th>
+                <td><span class="label pull-right"></span></td>
+                <th>Content</th>
+                <td><span class="label pull-right"></span></td>
+                <th>Status</th>
+            </tr>
+        </thead>
         <tbody>
             <% if @emails_sent %>
                 <% @emails_sent.each do |email| %>
@@ -9,16 +18,20 @@
                         <tr class="UnRead">
                             <td><strong><%= email.user.username %></strong></td>
                             <td><span class="label pull-right"></span></td>
-                            <td><strong><%= truncate(email.body, length: 15) %></strong></td>                            
+                            <td><strong><%= truncate(email.body, length: 15) %></strong></td>
+                            <td><span class="label pull-right"></span></td>                            
                             <td><strong> Not Read</strong></td>
                             <td><%= link_to  "Read" , email_sent_show_path(email),  class: "btn btn-danger" %></td> 
                         </tr>
                     <% else %>
+                    <tr>
                         <td><%= email.user.username %></td>
                         <td><span class="label pull-right"></span></td>
-                        <td><%= truncate(email.body, length: 15) %></td>                            
+                        <td><%= truncate(email.body, length: 15) %></td>
+                        <td><span class="label pull-right"></span></td>                            
                         <td><%= time_ago_in_words(email.updated_at) %> ago</td>
                         <td><%= link_to  "Read", email_sent_show_path(email),  class: "btn btn-primary" %></td>
+                    </tr>
                     <% end %>
                 <% end %>
             <% end %>
