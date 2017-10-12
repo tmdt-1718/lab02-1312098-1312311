@@ -12,8 +12,10 @@
 
 ActiveRecord::Schema.define(version: 20171008171615) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
 
   create_table "emails", force: :cascade do |t|
     t.integer "user_id"
@@ -23,6 +25,7 @@ ActiveRecord::Schema.define(version: 20171008171615) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "read", default: false
+
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,0 +1,48 @@
+<h1 align="center">All your friend</h1>
+<div align="center">
+
+    <% @friends.each do |friend| %>
+    <ul class="listing">
+        <div class="row">
+            <div class="well col-md-4 col-md-offset-4">
+                <div class="user-info">
+                    <li>
+                        <%= cl_image_tag friend.avatar ,  :width => 150, :height => 150, 
+                        :crop => :fill, :gravity => :face,
+                        :radius => :max, class: "avatar img-circle"  if friend.avatar %>
+                    </li>
+                    <li class="user-title">
+                        <%= link_to  friend.username, user_path(friend) %>
+                    </li>
+                    <li>
+                        <small> <%= friend.email %></small>
+                    </li>
+                </div>
+        
+                <div class="user-action">
+                    <div class="col-xs-8 col-xs-offset-2">
+                        <%= link_to "Unfriend", friend_path(friend), method: :delete,
+                                data: {confirm: "Are you sure you want to delete the album"}, 
+                                class: "btn btn-danger pull-left" %>
+                        <% if current_user.block?(friend.id) %>
+                            <%= form_for(:friend, role: "form", url: unblock_path, :method => 'put') do |f| %>
+                                <%= f.hidden_field :id, :value => friend.id %>
+                                <%= f.submit  "UnBlock" ,class: "btn btn-primary pull-right" %>
+                            <% end %>
+                            
+                        <% else %>
+                            <%= form_for(:friend, role: "form", url: block_path, :method => 'put') do |f| %>
+                                <%= f.hidden_field :id, :value => friend.id %>
+                                <%= f.submit  "Block" ,class: "btn btn-primary pull-right" %>
+                            <% end %>
+                        <% end %>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </ul>
+    <% end %>
+
+</div>
+

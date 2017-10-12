@@ -18,6 +18,11 @@ Rails.application.routes.draw do
   get 'emails/inbox/:id', to: 'emails#Email_inbox_show', as: 'email_inbox_show'
   
 
+  put 'block', to: "friends#block"
+  put 'unblock', to: "friends#unblock"
+
   get 'auth/:provider/callback', to: "sessions#create"
+
+  resources :friends
   
 end
