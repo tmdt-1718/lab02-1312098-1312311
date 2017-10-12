@@ -1,16 +1,13 @@
-<div align="center">
-        <div style="max-width: 680px; min-width: 500px; border: 2px solid #e3e3e3; border-radius:5px; margin-top: 20px">   
-           <div>
-                From: <%= @email.user.username %>
-                <br>
-                Subject: <%= @email.subject %>
-           </div> 
-           <div  style="background-color: #fbfcfd; border-top: thick double #cccccc; text-align: left;">
-               <div style="margin: 30px;">
-                    
-                        <%= @email.body %>
-                    
+
+<div class='well well-sm col-sm-8 col-sm-offset-2 bx-mail'>
+        <div align="center" class="box-email">
+            <strong >To:</strong> <%= current_user.friends_with.find(@email.to).username %>
+            <br>
+            <strong>Subject:</strong> <%= @email.subject %>
+            <div class="body">
+                <div >
+                    <%= @email.body %>                   
                 </div>
-           </div>   
-       </div>   
-   </div>
+            </div>   
+        </div>
+</div>

@@ -1,7 +1,7 @@
-<h1>Listing all emails received</h1>
+<h1 align="center">Listing all emails received</h1>
 
 <div>
-    <table class="table table-condensed table-hover">
+    <table class="table table-condensed table-hover emails-box">
         <thead>
             <tr>
                 <th>To</th>
@@ -19,6 +19,7 @@
                             <td><strong><%= email.user.username %></strong></td>
                             <td><span class="label pull-right"></span></td>
                             <td><strong><%= truncate(email.body, length: 15) %></strong></td>                            <td><strong><%= time_ago_in_words(email.created_at) %> ago</strong></td>
+                            <td><span class="label pull-right"></span></td>
                             <td><%= link_to  "Read" , email_inbox_show_path(email),  class: "btn btn-primary btn-xs" %></td> 
                         </tr>
                     <% else %>
@@ -26,6 +27,7 @@
                             <td><%= email.user.username %></td>
                             <td><span class="label pull-right"></span></td>
                             <td><%= truncate(email.body, length: 15) %></td>                            
+                            <td><span class="label pull-right"></span></td>
                             <td><%= time_ago_in_words(email.created_at) %> ago</td>
                         </tr>
                     <% end %>

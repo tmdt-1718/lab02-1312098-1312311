@@ -11,3 +11,26 @@
 .UnRead {
     background-color: #bdc3c7;
 }
+
+.emails-box {
+    margin-top: 50px;
+    thead {
+        font-size: 1.2em;
+        text-decoration: none;
+        text-align: center;
+    }
+}
+
+.bx-mail {
+    margin-top: 50px;
+}
+.box-email {
+    font-size: 1.2em;
+    .body {
+        background-color: #fbfcfd;
+        border-top: thick double #cccccc; 
+        text-align: left;
+        padding: 30px;
+    }
+
+}
