@@ -4,6 +4,7 @@ class EmailsController < ApplicationController
 
     def new
         @email = Email.new
+        @friends = current_user.friends_with.order(:username)
     end
 
     def create 
@@ -11,7 +12,7 @@ class EmailsController < ApplicationController
         @email.user = current_user
         if @email.save
             flash[:success] = "Email was sent"
-            redirect_to emails_path
+            redirect_to emails_sents_path
         else 
             render 'new'
         end
@@ -36,7 +37,7 @@ class EmailsController < ApplicationController
     end
 
     def Email_inbox
-        @emails_inbox = Email.where(to: current_user.id).all
+        @emails_inbox = Email.where(to: current_user.id).all.order('created_at DESC')
     end
 
     def Email_inbox_show
@@ -44,8 +45,6 @@ class EmailsController < ApplicationController
         if !@email.read
             @email.update(read: true)
         end
-
-
     end
 
 

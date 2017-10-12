@@ -2,14 +2,14 @@
 <h1 align="center">New Email</h1>
 <div class="row" id="new_email">
     <div class="col-xs-8 col-xs-offset-2">
-        <%= form_for(@email, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+        <%= form_for(@email, :html => {class: "form-horizontal", role: "form"},:url => emails_path) do |f| %>
 
         <div class="form-group">
             <div class="control-label col-sm-2">
                 <%= f.label :to %> <br/>
             </div>
             <div class="col-sm-8">
-                <%= f.text_field :to, class: "form-control", placeholder: "Someone", autofocus: true %>
+                <%= f.select :to, @friends.collect { |friend| [friend.username, friend.id] }, {} , {class: 'form-control', required: true} %>
             </div>
         </div>
 

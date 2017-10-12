@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :emails, except: [:index, :show]
   get 'emails/inbox', to: 'emails#Email_inbox'
   get 'emails/sent', to: 'emails#Email_sent'
-  get 'emails/sent/:id', to: 'email#Email_sent_show', as: 'email_sent_show'
+  get 'emails/sent/:id', to: 'emails#Email_sent_show', as: 'email_sent_show'
   get 'emails/inbox/:id', to: 'emails#Email_inbox_show', as: 'email_inbox_show'
   
 

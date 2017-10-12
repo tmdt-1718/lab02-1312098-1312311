@@ -14,7 +14,7 @@ class UsersController < ApplicationController
         if @user.save
             session[:user_id] = @user.id
             flash[:success] = "Welcome to Email App"
-            redirect_to edit_user_path(@user)
+            redirect_to emails_inbox_path
         else
             render 'new'
         end

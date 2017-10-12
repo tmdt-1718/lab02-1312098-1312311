@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
                 session[:user_id] = user.id
                 # LoginMailer.login_successfully(user).deliver_now
                 flash[:success] = "You have successfully logged in"
-                redirect_to user_path(user)
+                redirect_to emails_inbox_path
             else
                 flash.now[:danger] = "There was something wrong with your login information"
                 render 'new'
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
             session[:omniauth] = auth.except('extra')
             user = User.sign_in_from_omniauth(auth)
             session[:user_id] = user.id
-            redirect_to user_path(user)
+            redirect_to emails_inbox_path
         end
     end
 
