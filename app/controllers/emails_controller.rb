@@ -12,7 +12,7 @@ class EmailsController < ApplicationController
     def create 
         @email = Email.new(email_params)
         @email.user = current_user
-        @user_email = current_user.friends_with.find(@email.to).email
+        
         if @email.save
             UserEmailMailer.new_email(@email, @user_email).deliver_now
             flash[:success] = "Email was sent"
@@ -43,7 +43,9 @@ class EmailsController < ApplicationController
     end
 
     def Email_inbox_show
+        @user_email = current_user.friends_with.find(@email.user_id).email
         if !@email.read
+            UserEmailMailer.read_email(@email, @user_email).deliver_now
             @email.update(read: true)
         else 
             flash[:danger] = "You have been read this email"

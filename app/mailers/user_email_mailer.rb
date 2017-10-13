@@ -6,4 +6,11 @@ class UserEmailMailer < ApplicationMailer
         mail to: user_email,
             subject: "[You have new email in Email app]"
     end
+
+    def read_email(email, user_email)
+        @email = email
+        @user_email = user_email
+        mail to: user_email,
+            subject: "[ Inform read email ]"
+    end
 end
