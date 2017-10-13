@@ -1,0 +1,10 @@
+
+<p>
+    A new email was sent to you
+  </p>
+  <blockquote>
+    Subject: <em> <%= @email.subject %></em>
+  </blockquote>
+  <p>
+    To read this email, please <%= link_to 'Click Me',email_inbox_show_url(@email) %>.
+  </p>
