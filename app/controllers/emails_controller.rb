@@ -39,9 +39,20 @@ class EmailsController < ApplicationController
     end
 
     def Email_inbox
-        @emails_inbox = Email.where(to: current_user.id).all.order('created_at DESC')
-    end
+        if params[:id]
 
+            @emails_inbox = Email.where(to: current_user.id).where('id > ?', params[:id]).limit(2).order('created_at DESC')
+        else
+            @emails_inbox = Email.where(to: current_user.id).limit(2).order('created_at DESC')
+    
+        end
+
+        respond_to do |format|
+            format.html
+            format.js
+        end
+
+    end
     def Email_inbox_show
         @user_email = current_user.friends_with.find(@email.user_id).email
         if !@email.read

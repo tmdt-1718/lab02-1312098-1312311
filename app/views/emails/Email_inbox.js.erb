@@ -1,0 +1,8 @@
+$('.container-email').append(newFunction())
+function newFunction() {
+    var count_emails = '<%= @emails_inbox.count %>';
+    if (count_emails > 0)
+        return '<%= escape_javascript(render "email", emails_inbox:  @emails_inbox) %>';
+    else 
+        $('.load-more').remove();
+}

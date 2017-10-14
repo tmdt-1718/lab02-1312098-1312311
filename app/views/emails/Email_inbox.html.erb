@@ -11,28 +11,11 @@
                 <th>Status</th>
             </tr>
         </thead>
-        <tbody>
-            <% if @emails_inbox %>
-                <% @emails_inbox.each do |email| %>
-                    <% if !email.read %>
-                        <tr class="UnRead">
-                            <td><strong><%= email.user.username %></strong></td>
-                            <td><span class="label pull-right"></span></td>
-                            <td><strong><%= truncate(email.body, length: 15) %></strong></td>                            <td><strong><%= time_ago_in_words(email.created_at) %> ago</strong></td>
-                            <td><span class="label pull-right"></span></td>
-                            <td><%= link_to  "Read" , email_inbox_show_path(email),  class: "btn btn-primary btn-xs" %></td> 
-                        </tr>
-                    <% else %>
-                        <tr>
-                            <td><%= email.user.username %></td>
-                            <td><span class="label pull-right"></span></td>
-                            <td><%= truncate(email.body, length: 15) %></td>                            
-                            <td><span class="label pull-right"></span></td>
-                            <td><%= time_ago_in_words(email.created_at) %> ago</td>
-                        </tr>
-                    <% end %>
-                <% end %>
-            <% end %>
+        <tbody class="container-email">
+            <%= render  "email", emails_inbox: @emails_inbox %>
         </tbody>      
     </table>
+    <div class="load-more-container">
+        <%= link_to "Load More", emails_path, class: "load-more btn btn-sm btn-primary btn-ex" %>
+    </div>
 </div>

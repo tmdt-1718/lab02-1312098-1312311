@@ -1,0 +1,27 @@
+<% if emails_inbox %>
+    <% emails_inbox.each do |email| %>
+        <% if !current_user.block?(email.user_id) %>
+        
+            <% if !email.read %>
+                <tr class="UnRead record" data-id="<%= email.id %>">
+                    <td><%= email.user.username %></td>
+                    <td><span class="label pull-right"></span></td>
+                    <td><%= truncate(email.body, length: 15) %></td>                            
+                    <td><span class="label pull-right"></span></td>
+                    <td><%= time_ago_in_words(email.created_at) %> ago</td>
+                    <td><span class="label pull-right"></span></td>
+                    <td><%= link_to  "Read" , email_inbox_show_path(email),  class: "btn btn-primary btn-xs" %></td> 
+                </tr>
+            <% else %>
+                <tr class="record" data-id="<%= email.id %>">
+                    <td><%= email.user.username %></td>
+                    <td><span class="label pull-right"></span></td>
+                    <td><%= truncate(email.body, length: 15) %></td>                            
+                    <td><span class="label pull-right"></span></td>
+                    <td><%= time_ago_in_words(email.created_at) %> ago</td>
+                </tr>
+            <% end %>
+
+        <% end %>
+    <% end %>
+<% end %>
