@@ -1,5 +1,5 @@
-<%= render  "shared/errors", obj: @email %>
 <h1 align="center">New Email</h1>
+<%= render  "shared/errors", obj: @email %>
 <div class="row" id="new_email">
     <div class="col-xs-8 col-xs-offset-2">
         <%= form_for(@email, :html => {class: "form-horizontal", role: "form"},:url => emails_path) do |f| %>

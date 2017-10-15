@@ -10,10 +10,8 @@
                     <td><span class="label pull-right"></span></td>
                     <td><%= time_ago_in_words(email.created_at) %> ago</td>
                     <td><span class="label pull-right"></span></td>
-                    <td><%= link_to  "Read" , email_inbox_show_path(email),  class: "btn btn-primary btn-xs" %></td> 
-                    <% if !current_user.friend?(email.user) %>
-                       <td><%= render  "shared/add_friend", user: email.user %></td>
-                    <% end %>
+                    <td><%= link_to  "Read" , email_inbox_show_path(email),  class: "btn btn-primary " %></td> 
+                   
                      
                 </tr>
             <% else %>
@@ -23,9 +21,7 @@
                     <td><%= truncate(email.body, length: 15) %></td>                            
                     <td><span class="label pull-right"></span></td>
                     <td><%= time_ago_in_words(email.created_at) %> ago</td>
-                    <% if !current_user.friend?(email.user) %>
-                        <td><%= render  "shared/add_friend", user: email.user %></td>
-                    <% end %>
+                   
                 </tr>
             <% end %>
         <% end %>

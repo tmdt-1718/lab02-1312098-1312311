@@ -11,18 +11,26 @@ class EmailsController < ApplicationController
 
     def create 
         @emails = params[:email]
+        @emails[:to].shift if @emails[:to].count > 1
+        @success = 1
         @emails[:to].each do |to|
-            if !to.empty?
-                @email = Email.new(to: to, user_id: current_user.id, subject: params[:email][:subject], body: params[:email][:body])
-                if @email.save
-                    UserEmailMailer.new_email(@email, @user_email).deliver_now
-                else 
-                    render 'new'
-                end
+            
+            @email = Email.new(to: to, user_id: current_user.id, subject: params[:email][:subject], body: params[:email][:body])
+            if @email.save
+                UserEmailMailer.new_email(@email, @user_email).deliver_now
+            else 
+                @friends = current_user.friends_with.order(:username)
+                render 'new'
+                return
             end
+            
         end
-        flash[:success] = "Email was sent"
-        redirect_to emails_sent_path  
+        if @success == 1
+            flash[:success] = "Email was sent"
+            redirect_to emails_sent_path
+            return
+        end
+     
     end
 
     def show
@@ -35,7 +43,7 @@ class EmailsController < ApplicationController
     end
 
     def Email_sent
-        @emails_sent= Email.where(user_id: current_user.id).all
+        @emails_sent= Email.where(user_id: current_user.id).all.order('created_at DESC')
     end
 
     def Email_sent_show  
@@ -44,10 +52,10 @@ class EmailsController < ApplicationController
     def Email_inbox
         if params[:id]
 
-            @emails_inbox = Email.where(to: current_user.id).where('id > ?', params[:id]).limit(2).order('created_at DESC')
+            @emails_inbox = Email.where(to: current_user.id).where('id < ?', params[:id]).limit(17).order('created_at DESC')
         else
-            @emails_inbox = Email.where(to: current_user.id).limit(2).order('created_at DESC')
-    
+            @emails_inbox = Email.where(to: current_user.id).limit(17).order('created_at DESC')
+
         end
 
         respond_to do |format|
