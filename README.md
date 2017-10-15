@@ -6,7 +6,7 @@ Thành viên:
 * [x] **1312098** Phùng Văn Dũng (1312098)
 * [x] **1312311** Huỳnh Văn Lâm (1312311)
 
-URL: **URL hosting của bài tập**
+URL: **https://floating-forest-53665.herokuapp.com/**
 
 ## Yêu cầu
 
@@ -28,7 +28,7 @@ Yêu cầu **bắt buộc**
 
 Yêu cầu **không bắt buộc**:
 * [ ] Người dùng có thể gửi hình ảnh đính kèm theo thông điệp. (**MSSV**)
-* [ ] Người dùng có thể gửi tin nhắn đến nhiều người dùng cùng lúc. (**MSSV**)
+* [x] Người dùng có thể gửi tin nhắn đến nhiều người dùng cùng lúc. (**1312098**)
 * [x] Người dùng có thể đăng nhập với Facebook. (**1312098**)
 * [x] Người dùng có thể block người khác. Sau khi block, người dùng sẽ không nhận được tin nhắn từ người bị block gửi nữa. (**1312098**)
 * [x] Người dùng có thể xóa người dùng khác ra khỏi danh sách bạn. (**1312098**)
