@@ -9,17 +9,13 @@ class FriendsController < ApplicationController
     end
 
     def block
-        @friend = Friend.find_by(user_id: current_user.id, friend_id: params[:friend][:id]  )
-        @friend.block = true
-        @friend.save
+        current_user.block_friend(params[:friend][:id])
         flash[:success] = "You block successfull"
         redirect_to friends_path
     end
 
     def unblock
-        @friend = Friend.find_by(user_id: current_user.id, friend_id: params[:friend][:id]  )
-        @friend.block = false
-        @friend.save
+        current_user.unBlock(params[:friend][:id])
         flash[:success] = "You unblock successfull"
         redirect_to friends_path
     end

@@ -24,7 +24,7 @@
                         <%= link_to "Unfriend", friend_path(friend), method: :delete,
                                 data: {confirm: "Are you sure you want to delete the album"}, 
                                 class: "btn btn-danger pull-left" %>
-                        <% if current_user.block?(friend.id) %>
+                        <% if current_user.block?(friend) %>
                             <%= form_for(:friend, role: "form", url: unblock_path, :method => 'put') do |f| %>
                                 <%= f.hidden_field :id, :value => friend.id %>
                                 <%= f.submit  "UnBlock" ,class: "btn btn-primary pull-right" %>

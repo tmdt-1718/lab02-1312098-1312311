@@ -1,8 +1,7 @@
 $(document).ready(function () {
 
-
-   
     $('.load-more').hide();
+    
     $(window).scroll(function () {
         if ($(document).height() <= $(window).scrollTop() + $(window).height()) {
             $('.load-more').show();

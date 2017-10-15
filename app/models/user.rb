@@ -1,4 +1,28 @@
 class User < ApplicationRecord
+    has_many :blocks
+
+    has_many :active_blocks, class_name:  "Block",
+                foreign_key: "user_id",
+                dependent:  :destroy 
+
+    has_many :blocks_user, through: :active_blocks, source: :block                     
+
+    def block_friend(id_user)
+        other_user = User.find(id_user)
+        blocks_user << other_user
+    end
+
+    # Unfriend a user.
+    def unBlock(id_user)
+        other_user = User.find(id_user)
+        blocks_user.delete(other_user)
+    end
+
+    # Returns true if the current user is friend the other user.
+    def block?(other_user)
+        blocks_user.include?(other_user)
+    end 
+
 
 
     has_many :emails
@@ -24,10 +48,7 @@ class User < ApplicationRecord
         friends_with.include?(other_user)
     end 
 
-    def block?(id_user)
-        friend = Friend.find_by(user_id: self.id, friend_id: id_user)
-        friend.block
-    end
+
 
     
     before_save {self.email = email.downcase}

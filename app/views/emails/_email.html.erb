@@ -1,6 +1,6 @@
 <% if emails_inbox %>
     <% emails_inbox.each do |email| %>
-        <% if !current_user.block?(email.user_id) %>
+        <% if !current_user.block?(email.user) %>
         
             <% if !email.read %>
                 <tr class="UnRead record" data-id="<%= email.id %>">
@@ -11,6 +11,10 @@
                     <td><%= time_ago_in_words(email.created_at) %> ago</td>
                     <td><span class="label pull-right"></span></td>
                     <td><%= link_to  "Read" , email_inbox_show_path(email),  class: "btn btn-primary btn-xs" %></td> 
+                    <% if !current_user.friend?(email.user) %>
+                       <td><%= render  "shared/add_friend", user: email.user %></td>
+                    <% end %>
+                     
                 </tr>
             <% else %>
                 <tr class="record" data-id="<%= email.id %>">
@@ -19,9 +23,11 @@
                     <td><%= truncate(email.body, length: 15) %></td>                            
                     <td><span class="label pull-right"></span></td>
                     <td><%= time_ago_in_words(email.created_at) %> ago</td>
+                    <% if !current_user.friend?(email.user) %>
+                        <td><%= render  "shared/add_friend", user: email.user %></td>
+                    <% end %>
                 </tr>
             <% end %>
-
         <% end %>
     <% end %>
 <% end %>
