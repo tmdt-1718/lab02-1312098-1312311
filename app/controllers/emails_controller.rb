@@ -10,16 +10,19 @@ class EmailsController < ApplicationController
     end
 
     def create 
-        @email = Email.new(email_params)
-        @email.user = current_user
-        
-        if @email.save
-            UserEmailMailer.new_email(@email, @user_email).deliver_now
-            flash[:success] = "Email was sent"
-            redirect_to emails_sent_path
-        else 
-            render 'new'
+        @emails = params[:email]
+        @emails[:to].each do |to|
+            if !to.empty?
+                @email = Email.new(to: to, user_id: current_user.id, subject: params[:email][:subject], body: params[:email][:body])
+                if @email.save
+                    UserEmailMailer.new_email(@email, @user_email).deliver_now
+                else 
+                    render 'new'
+                end
+            end
         end
+        flash[:success] = "Email was sent"
+        redirect_to emails_sent_path  
     end
 
     def show

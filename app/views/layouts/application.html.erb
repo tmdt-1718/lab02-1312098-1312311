@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Lab02Lab0213120981312311</title>
+    <title>Lab0213120981312311</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css"/>
+    <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js", 'data-turbolinks-track' => true %>
   </head>
 
   <body>
@@ -14,5 +15,10 @@
       <%= render  "layouts/messages" %>
       <%= yield %>
     </div>
+    <script>
+      $(document).ready(function () {
+        $('.selectpicker').selectpicker();
+      });
+    </script>
   </body>
 </html>

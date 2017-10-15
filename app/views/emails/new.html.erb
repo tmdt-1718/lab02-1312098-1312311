@@ -9,7 +9,7 @@
                 <%= f.label :to %> <br/>
             </div>
             <div class="col-sm-8">
-                <%= f.select :to, @friends.collect { |friend| [friend.username, friend.id] }, {} , {class: 'form-control', required: true} %>
+                <%= f.select :to, @friends.collect { |friend| [friend.username, friend.id] }, {} , {multiple: true, class: "selectpicker  show-menu-arrow form-control", require: true,title: "Choose one of the following...","data-selected-text-format": "count > 4", "data-live-search": "true"} %>
             </div>
         </div>
 
@@ -30,6 +30,8 @@
                 <%= f.text_area :body, rows: 10, class: "form-control", placeholder: "Body of email" %>
             </div>
         </div>
+
+       
 
 
         <div class="form-group">
