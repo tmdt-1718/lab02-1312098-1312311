@@ -102,7 +102,7 @@ Rails.application.configure do
   :enable_starttls_auto => true
   }
   
-  config.action_mailer.default_url_options = {host: "http://boiling-brook-94489.herokuapp.com"}
+  config.action_mailer.default_url_options = {host: "https://aqueous-island-14384.herokuapp.com"}
 
   
 
