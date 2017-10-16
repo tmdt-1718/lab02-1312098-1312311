@@ -3,6 +3,9 @@ class EmailsController < ApplicationController
     before_action :require_user
     before_action :require_same_user, only: [ :Email_sent_show]
 
+    def index
+        redirect_to emails_sent_path
+    end
 
     def new
         @email = Email.new
