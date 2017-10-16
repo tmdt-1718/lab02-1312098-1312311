@@ -1,11 +1,7 @@
 class EmailsController < ApplicationController
-    before_action :set_email, only: [:show, :destroy, :Email_inbox_show, :Email_sent_show]
+    before_action :set_email, only: [:Email_inbox_show, :Email_sent_show]
     before_action :require_user
-    before_action :require_same_user, only: [ :Email_sent_show]
-
-    def index
-        redirect_to emails_sent_path
-    end
+    before_action :require_same_user, only: [:Email_sent_show]
 
     def new
         @email = Email.new
@@ -17,33 +13,22 @@ class EmailsController < ApplicationController
         @emails[:to].shift if @emails[:to].count > 1
         @success = 1
         @emails[:to].each do |to|
-            
             @email = Email.new(to: to, user_id: current_user.id, subject: params[:email][:subject], body: params[:email][:body])
             if @email.save
                 UserEmailMailer.new_email(@email, @user_email).deliver_now
             else 
                 @friends = current_user.friends_with.order(:username)
                 render 'new'
-                return
             end
             
         end
         if @success == 1
             flash[:success] = "Email was sent"
             redirect_to emails_sent_path
-            return
         end
      
     end
 
-    def show
-
-    end
-
-
-    def destroy
-
-    end
 
     def Email_sent
         @emails_sent= Email.where(user_id: current_user.id).all.order('created_at DESC')
