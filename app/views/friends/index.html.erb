@@ -22,7 +22,7 @@
                 <div class="user-action">
                     <div class="col-xs-8 col-xs-offset-2">
                         <%= link_to "Unfriend", friend_path(friend), method: :delete,
-                                data: {confirm: "Are you sure you want to delete the album"}, 
+                                data: {confirm: "Are you sure you want to unfriend?"}, 
                                 class: "btn btn-danger pull-left" %>
                         <% if current_user.block?(friend) %>
                             <%= form_for(:friend, role: "form", url: unblock_path, :method => 'put') do |f| %>
