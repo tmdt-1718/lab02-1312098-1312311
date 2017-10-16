@@ -1,6 +1,6 @@
 <div class='well well-sm col-sm-8 col-sm-offset-2 bx-mail'>
     <div align="center" class="box-email">
-        <strong >From:</strong> <%= current_user.friends_with.find(@email.user_id).username %>
+        <strong >From:</strong> <%= @email.user.username %>
         <br>
         <strong>Subject:</strong> <%= @email.subject %>
         <div class="body">
