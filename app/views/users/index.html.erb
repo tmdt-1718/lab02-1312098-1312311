@@ -1,6 +1,5 @@
 <h1 align="center">All Email App Users</h1>
 <div align="center">
-
     <% @users.each do |user| %>
     <% if current_user != user %>
     <ul class="listing">
@@ -39,6 +38,6 @@
     </ul>
     <% end %>
     <% end %>
-
+    <%= will_paginate %>
 </div>
 

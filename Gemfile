@@ -41,7 +41,8 @@ gem 'omniauth-facebook' # login with facebook
 gem 'certified'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'will_paginate', '~> 3.1.0'
+gem 'bootstrap-will_paginate'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

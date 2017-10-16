@@ -1,7 +1,7 @@
 class FriendsController < ApplicationController
     before_action :require_user
     def index
-        @friends = current_user.friends_with
+        @friends = current_user.friends_with.paginate(page: params[:page], per_page: 5)
     end
 
     def show
