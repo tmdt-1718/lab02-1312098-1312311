@@ -1,12 +1,10 @@
 class EmailsController < ApplicationController
     before_action :set_email, only: [ :Email_inbox_show, :Email_sent_show]
     before_action :require_user
-<<<<<<< HEAD
-    before_action :require_same_user, only: [ :Email_sent_show]
-=======
+
     before_action :require_same_user, only: [:Email_sent_show]
     before_action :require_read_email_sent, only: [:Email_inbox_show]
->>>>>>> fix-errors
+
 
     def new
         @email = Email.new
