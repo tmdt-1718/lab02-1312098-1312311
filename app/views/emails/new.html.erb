@@ -2,7 +2,7 @@
 <%= render  "shared/errors", obj: @email %>
 <div class="row" id="new_email">
     <div class="col-xs-8 col-xs-offset-2">
-        <%= form_for(@email, :html => {class: "form-horizontal", role: "form"},:url => emails_path) do |f| %>
+        <%= form_for(@email, :html => {class: "form-horizontal", role: "form"},:url => emails_inbox_path) do |f| %>
 
         <div class="form-group">
             <div class="control-label col-sm-2">
