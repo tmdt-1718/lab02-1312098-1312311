@@ -5,7 +5,6 @@ class FriendsController < ApplicationController
     end
 
     def show
-
     end
 
     def block
