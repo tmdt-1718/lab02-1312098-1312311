@@ -1,5 +1,6 @@
 class UserEmailMailer < ApplicationMailer
-
+    default from: "admin@example.com"
+    
     def new_email(email, user_email)
         @email = email
         
