@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
-  resources :emails, except: [:index,:show, :edit, :update, :destroy]
+  resources :emails, except: [:index,:show, :edit, :update, :destroy, :create]
   get 'emails/inbox', to: 'emails#Email_inbox'
+  post 'emails/inbox', to: 'emails#create'
   get 'emails/sent', to: 'emails#Email_sent'
   get 'emails/sent/:id', to: 'emails#Email_sent_show', as: 'email_sent_show'
   get 'emails/inbox/:id', to: 'emails#Email_inbox_show', as: 'email_inbox_show'
