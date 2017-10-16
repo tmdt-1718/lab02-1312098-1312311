@@ -1,7 +1,7 @@
 class EmailsController < ApplicationController
-    before_action :set_email, only: [:Email_inbox_show, :Email_sent_show]
+    before_action :set_email, only: [ :Email_inbox_show, :Email_sent_show]
     before_action :require_user
-    before_action :require_same_user, only: [:Email_sent_show]
+    before_action :require_same_user, only: [ :Email_sent_show]
 
     def new
         @email = Email.new
@@ -17,6 +17,7 @@ class EmailsController < ApplicationController
             if @email.save
                 UserEmailMailer.new_email(@email, @user_email).deliver_now
             else 
+                @success = 0
                 @friends = current_user.friends_with.order(:username)
                 render 'new'
             end
