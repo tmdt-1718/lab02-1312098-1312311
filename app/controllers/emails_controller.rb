@@ -17,13 +17,14 @@ class EmailsController < ApplicationController
         @success = 1
         @emails[:to].each do |to|
             @email = Email.new(to: to, user_id: current_user.id, subject: params[:email][:subject], body: params[:email][:body])
-            @user_email = User.find(to).email
             if @email.save
+                @user_email = User.find(to).email
                 UserEmailMailer.new_email(@email, @user_email).deliver_now
             else 
                 @success = 0
                 @friends = current_user.friends_with.order(:username)
                 render 'new'
+                return
             end
             
         end
