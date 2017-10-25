@@ -13,7 +13,7 @@ $(document).on('turbolinks:load', function() {
 
         // prevent the default click action
         e.preventDefault();
-        console.log($(this).attr('href') + '/inbox');
+        console.log($(this).attr('href') );
 
         // hide load more link
         $('.load-more').hide();
@@ -30,7 +30,7 @@ $(document).on('turbolinks:load', function() {
             // make a get request to the server
             type: "GET",
             // get the url from the href attribute of our link
-            url: $(this).attr('href') + '/inbox',
+            url: $(this).attr('href'),
             // send the last id to our rails app
             data: {
                 id: last_id
