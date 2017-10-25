@@ -30,7 +30,7 @@ class FriendsController < ApplicationController
         
         current_user.unfriend(params[:id])
         flash[:danger] = "Unfriend is successfull"
-        redirect_to users_path
+        redirect_to friends_path
     end
 
     private
