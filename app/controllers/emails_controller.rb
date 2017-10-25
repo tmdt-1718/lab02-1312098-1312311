@@ -44,13 +44,12 @@ class EmailsController < ApplicationController
 
     def Email_inbox
         if params[:id]
-
-            @emails_inbox = Email.where(to: current_user.id).where('id < ?', params[:id]).limit(17).order('created_at DESC')
+            @emails_inbox = Email.where(to: current_user.id).where('id < ?', params[:id]).limit(5).order('created_at DESC')
         else
-            @emails_inbox = Email.where(to: current_user.id).limit(17).order('created_at DESC')
+            @emails_inbox = Email.where(to: current_user.id).limit(15).order('created_at DESC')
 
         end
-
+        
         respond_to do |format|
             format.html
             format.js
